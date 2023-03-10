@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+ 
+        
+
+
+
+     
+ <div class="ui layout">
+            <div class="ui centered grid container">
+                <div class="row">
+                    <div class="ui six wide computer twelve wide tablet column">
+                        <br> 
+                        <br> 
+                      
+                        
+                        <br>
+                        <br>
+                        
+                        <h3 class="text-align-center-sq block-sq title-sq">Login</h3> ou cree un compte <a href="{{path('app_register')}}">ici</a>  
+                        
+                        <br><br>
+                         {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                      <form method="post">  
+                        <div class="div-c">
+                            <div class="divided-column">
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="E-mail" required autofocus >
+                            </div>
+
+                            <div class="divided-column">
+                               <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Mot de passe" required>
+                            </div>
+
+                            <input type="hidden" name="_csrf_token"
+                                value="{{ csrf_token('authenticate') }}"    >
+                            
+                        </div>
+                        
+                        <hr>
+                        <br>
+                            <div class="row">
+                            <div class="col-12">
+                          <button class="btn btn-primary btn-block  fullwidth-sq" type="submit">login</button></div></div>
+                         </form> 
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+       
+
+{% endblock %}

@@ -1,0 +1,78 @@
+<header class="header-section ths header-shadow header-sticky header-slide-up header-transparent is-transparent equal-tablet-header-items equal-mobile-header-items">
+    <div class="header-content">
+
+        <div class="ui container grid">
+            <div class="header-item header-left">
+            	
+            </div>
+
+            <div class="header-item header-center flex-grow-true">
+               
+<a class="logo item" href="{{path('app_home')}}">
+	<img src="{{asset('assets/hg-dev.png')}}" srcset="{{asset('assets/hg-dev.png')}}" alt="myCar logo" class="logo-transparent">
+
+	<img src="{{asset('assets/hg-dev.png')}}" srcset="{{asset('assets/hg-dev.png')}}" alt="myCar logo">
+</a>
+            </div>
+            
+            <div class="header-item header-right flex-align-right">
+                
+                <!-- Sidemenu Trigger -->
+                <a class="sidemenu-trigger hamburger item" data-trigger-for="menu01">
+                   
+                    <span class="hamburger-box">
+                      <span class="hamburger-inner"></span>
+                    </span>
+                </a>
+                
+              
+                <!-- Include Menu -->
+                
+<!-- Header Menu-->
+                
+    <div class="menu-default burger-sidemenu sidemenu-open-right icons-left profile-priority slide-out-sq dimmed dropdown-open-right" data-burger="menu01">
+       
+       <a class="sidemenu-trigger xclose-sq hamburger hamburger-elastic item" data-trigger-for="menu01">
+
+			<span class="hamburger-box">
+			  <span class="hamburger-inner"></span>
+			</span>
+		</a>
+        
+        <ul class="main-menu">
+                        
+            <li><a href="{{path('add_ad')}}" class="item">
+                    <span>Ajouter un covoiturage</span>
+                </a>
+            </li>
+              <li><a href="{{path('profile')}}" class="item">
+                    <span>Mon profile</span>
+                </a>
+            </li>
+             <li><a href="{{path('myres')}}" class="item">
+                    <span>Mes Reservations</span>
+                </a>
+            </li>
+            
+           
+            
+            <li><a href="{{path('app_register')}}" class="item">
+                    <span>Cree un compte</span>
+                </a>
+            </li>
+
+            <li><a href="{{path('app_login')}}"  class="item">
+                    <span>Connecter</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+<!-- End of Header Menu-->
+                
+            </div>
+        </div>
+        
+    </div>    
+</header>

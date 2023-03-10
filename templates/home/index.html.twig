@@ -1,0 +1,243 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuill{% endblock %}
+
+{% block body %}
+    
+    
+    <div class="ui layout" id="top">
+   	 
+    	<div class="light-section-sq" >
+    		<!-- Hero Full Page -->
+			<div class="hero-search-full-page low-sq next-sq" >
+				   <!-- Hero Search Vertical Default -->
+				   <div class="h-search-v narrow-sq animate-sq shadow-sq">
+                   {{form_start(form)}}
+						<div  class="hero-search-form">
+
+							<div class="search-item">
+							<i class="fas fa-share fa-2xl"></i>
+								
+								<div class="fltp">
+									{{form_widget(form.ville)}}
+									<label class="placeholder" data-big-placeholder="choisir le depart" data-little-placeholder="choisir le depart"></label>
+								</div>
+							</div>
+
+							<div class="search-item">
+							<i class="fas fa-reply fa-2xl"></i>
+								<div class="fltp">
+									{{form_widget(form.destination)}}
+									<label class="placeholder" data-big-placeholder="destination" data-little-placeholder="destination"></label>
+								</div>
+							</div>
+
+							<div class="search-item">
+							
+							<i class="fas fa-car-alt fa-2xl"></i>
+						
+								
+								<div class="fltp">
+									{{form_widget(form.nbp)}}
+									<label class="placeholder" data-big-placeholder="nombre de place disponible" data-little-placeholder="nombre de place disponible"></label>
+								</div>
+							</div>
+						
+
+						 	<div class="search-item">
+							<i class="fas fa-calendar-alt fa-2xl"></i>
+							
+								
+                                    {{form_widget(form.date)}}
+									{# <input type="text" class="filter" value="" required placeholder="enter date"> #}
+									<label class="placeholder"  data-big-placeholder="choisir la date" data-little-placeholder="choisir la date"></label>
+								
+							</div> 
+							
+							
+
+							<div class="search-item">
+
+								<button class="button-sq" type="submit">
+									<i class="icon icon-search"></i>
+									<span>chercher</span>
+								</button>
+
+							</div>
+
+						</div>
+                         {{form_end(form)}}
+					</div>
+
+				   <!-- Hero Big - Slick -->
+				   <div class="sq-slick hero-big slide-up-sq left-sq" data-mobile-arrows="false" data-tablet-arrows="false" data-mobile-dots="true" data-fade="true" data-speed="500" data-ease="linear">
+					   <!-- .slide-up .fade .top .bottom -->
+
+					   <!--Slide 01-->
+						<div class="">
+							<div class="caption-content">
+							   <h1>Trouver un covoiturage <br>plus vite</h1>
+							   <p>test.</p>
+							</div>
+							<div class="caption-outside">
+								<a class="button-sq link-sq" href="property_page.html">
+									<i class="icon big icon-slim-arrow-right"></i>
+									<span>voir plus</span>
+								</a>
+							</div>
+
+                        <div class="video-wrapper" style="background-image: url('assets/28.JPG'); background-repeat: no-repeat; background-size: 100% 35%; background-position: center center;" allowfullscreen>
+                        
+                        </div> 
+
+                       {#  <div class="video-wrapper">
+                        <img src="{{asset('assets/28.JPG')}}" style="width:100%; height:900px;" alt="">
+                        
+                        </div> #}
+                   {#  https://www.hertz.tn/images/banniere/28.jpg #}
+						{# 	<div class="video-wrapper"> 
+								<iframe src="https://www.youtube.com/embed/BDCU5OFXZ2c?controls=0&amp;showinfo=0&amp;rel=0&amp;autoplay=1&amp;loop=1&amp;start=15&amp;mute=1" allowfullscreen></iframe>
+							</div> #}
+						</div>
+
+					</div>
+
+			   </div>
+    		
+    
+		
+   	
+    	</div>
+    	<div class="typo-section-sq bottom-default">
+			<div class="ui grid container">
+            	<div class="row">
+					<div class="ui twelve wide mobile twelve wide tablet twelve wide computer column">
+						<div class="typo-section-header-sq">
+							<h2 class="text-align-center-sq">covoiturages</h2>
+						</div>
+					</div>
+					{% if ads %}
+                    {% for a in ads |sort((b, a) => a.id <=> b.id) %}
+					<div class="ui twelve wide mobile six wide tablet four wide computer column">
+						<div class="property-item caption-sq shadow-sq small-sq">
+							<div class="property-item-inner">
+
+							   <div class="price-tag-sq">{{a.montant}} DT <span>/ personne</span></div>
+
+                                 {% if a.nbp == a.nbr %}
+                                 
+                                 {% else %}
+							   <a class="add-wishlist" href="{{path('add_reservation',{'id':a.id})}}" >
+								<i class="fa-solid fa-circle-plus ml-5" style="color:black;"></i>   
+							   </a>
+                                {% endif %}
+
+								<a class="image-sq" href="{{path('show_ad',{'id':a.id})}}">
+									<div class="image-wrapper">
+										<span class="image-inner">
+											<img src="/uploads/{{a.image}}" alt="" class="">
+										</span>
+									</div>
+								</a>
+
+								<div class="main-details">
+								   <div class="title-row">
+									   <a href="property_page.html" class="title-sq">{{a.marque}}</a>
+                                       {{a.datecov | date ('m/d/Y')}}
+                                        {{a.timecov | date ('h:m')}}
+								   </div>
+            
+								   <div class="icons-row">
+									   <div class="icons-column">
+										   <i class="icon icon-building-9"></i> {{a.phone}}
+									   </div>
+                                        <div class="icons-column">
+									  <i class="icon icon-location-pin-2"></i> De {{a.ville}} vers {{a.destination}}
+                                         </div>
+									   <div class="icons-column">
+                                       {% if a.nbp == a.nbr %}
+										   <i class="icon icon-user-circle"></i>{{a.nbp}}/{{a.nbr}} Compléé
+                                           {% else %}
+                                            <i class="icon icon-user-circle"></i>{{a.nbp}}/{% if a.nbr == null %}0 {% else %}{{a.nbr}}{% endif %}
+                                         {% endif %}
+									   </div>
+                                       
+                                       
+								   </div>
+                                       
+                                       
+								</div>
+
+                              
+                                        <div class="mb-3 text-center">
+
+										  <a class="button-sq small-sq" href="{{path('show_ad',{'id':a.id})}}">Consulter</a>
+                                          {% if a.nbp == a.nbr %}
+                                            <button  type="button" class="button-sq small-sq cancel-sq" disbaled >reserver</button> 
+                                            {% else %}                                        
+                                           <a class="button-sq small-sq" href="{{path('add_reservation',{'id':a.id})}}">Reserver</a>
+                                            {% endif %}
+								 </div>
+
+                            </div>
+						</div>
+					</div>
+                    {% endfor %}
+					{% else %}
+            	<span class="alert alert-info text-center">aucun covoiturage trouver</span>
+				{% endif %}
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    
+    <!-- Sign Up -->
+    <div class="ui full modal" data-for="modal01">
+        <div class="modal-full-background">
+            <img src="assets/images/modal/modal_background_001.jpg" alt="">
+        </div>
+
+        <i class="icon icon-close close-modal"></i>
+
+        <div class="header center">
+            Sign Up Now
+        </div>
+
+        <div class="content">
+            <a href="#" class="button-sq fullwidth-sq modal-ui-trigger" data-trigger-for="modal03">
+                <i class="icon icon-email-2"></i>
+                <span>Sign Up with Email</span>
+            </a>
+
+            <a href="#" class="button-sq fullwidth-sq facebook-button">
+                <i class="icon icon-logo-facebook2"></i>
+                <span>Sign Up with Facebook</span>
+            </a>
+
+            <a href="#" class="button-sq fullwidth-sq google-button">
+                <img src="assets/images/icon-google-plus.svg" alt="">
+                <span>Sign Up with Google</span>
+            </a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus magna vel ex semper, in pharetra justo pulvinar. </p>
+        </div>
+
+        <div class="actions">
+            <div class="border-container">
+                <div class="button-sq link-sq modal-ui-trigger" data-trigger-for="modal02">Already a member?</div>
+
+                <div class="button-sq link-sq login-sq modal-ui-trigger" data-trigger-for="modal02">
+                    Log In
+                    <i class="icon icon-person-lock-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+{% endblock %}
+
+
+
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/less/base.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/less/header.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/less/theme.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/icon/style.css')}}">
+      {#   <link rel="icon" href="assets/images/ico/favicon.ico"> #}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="{{asset('assets/library/modernizr-custom.js')}}"></script>
+    <script src="https://kit.fontawesome.com/a0d5f02114.js" crossorigin="anonymous"></script>
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+
+      
+    </head>
+    <body class="no-transition">
+<div id="page-wrapper">
+{% include 'layouts/nav.html.twig' %}
+        {% block body %}{% endblock %}
+   {% include 'layouts/footer.html.twig' %}  
+<script src="{{asset('assets/library/jquery-2.2.0.min.js')}}"></script>
+<script src="{{asset('assets/library/flexmenu.js')}}"></script>
+<script src="{{asset('assets/library/nouislider.min.js')}}"></script>
+<script src="{{asset('assets/library/wNumb.js')}}"></script>
+<script src="{{asset('assets/library/jrespond.min.js')}}"></script>
+<script src="{{asset('assets/library/scrollspy.min.js')}}"></script>
+<script src="{{asset('assets/library/visibility.js')}}"></script>
+<script src="{{asset('assets/library/accordion.js')}}"></script>
+<script src="{{asset('assets/library/dropdown-custom.js')}}"></script>
+<script src="{{asset('assets/library/sticky.js')}}"></script>
+<script src="{{asset('assets/library/page-transition.js')}}"></script>
+<script src="{{asset('assets/library/checkbox.js')}}"></script>
+<script src="{{asset('assets/library/transition.js')}}"></script>
+<script src="{{asset('assets/library/sidebar.js')}}"></script>
+<script src="{{asset('assets/library/modal.js')}}"></script>
+<script src="{{asset('assets/library/dimmer.js')}}"></script>
+<!-- Datepicker -->
+<script src="{{asset('assets/library/popup.js')}}"></script>
+<script src="{{asset('assets/library/calendar.js')}}"></script>
+
+<!-- Slick -->
+<script src="{{asset('assets/library/slick.js')}}"></script>
+
+<script src="{{asset('assets/library/header.js')}}"></script>
+<script src="{{asset('assets/library/functions.js')}}"></script>
+   
+ </div>
+    </body>
+   
+</html>

@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation pour {{ad.user.nom}} {{ad.user.prenom}}{% endblock %}
+
+{% block body %}
+ 
+<br>
+
+<div class="ui layout">
+        <!-- grid -->
+        <div class="ui grid container stackable centered">
+            <div class="row">
+        
+                <div class="ui twelve wide tablet twelve wide computer ten wide widescreen ten wide large screen column property-section-boxed">
+                  
+                    <br>
+                   
+                    <div class="white-section shadow-sq">
+                        <div class="inner-section">
+                        
+                            <div class="ui grid">
+                                <div class="row">
+                                   
+                                    <!-- Left-->
+                                    <div class="ui twelve wide mobile six wide computer column">
+                                       
+                                        <!-- Slick aici-->
+                                        
+                                        <div class="property-image-wrapper">
+                                            <div class="sq-slick carousel-sq" data-center-mode="true" data-center-padding="0" data-show-slides="1" data-scroll-slides="1" data-mobile-center-padding="0" data-tablet-arrows="false" data-mobile-arrows="false" data-fade="true" data-ease="linear" data-speed="500" data-tablet-fade="false" data-tablet-ease="ease" data-tablet-speed="300" data-mobile-fade="false" data-mobile-ease="ease" data-mobile-speed="300">
+                                               
+                                                <!-- Slide 01-->
+                                                <div>
+                                                    <div class="caption-content"></div>
+                                                    <div class="image-wrapper">
+                                                        <div class="image-inner">
+                                                            <img class="image-sq slick-img" src="/uploads/{{ad.image}}" alt="" data-gallery="gallery" data-caption="Car 01">
+                                                        </div>
+                                                    </div>
+                                            
+                                                </div>
+                                            
+                                             
+                                            
+                                            </div>
+                                            
+                                            <a class="host-sq" href="{{path('profile',{'id':ad.user.id})}}">
+                                                <span class="avatar-sq">
+                                                    <img src="assets/images/avatar/avatar_04.jpg" alt="">
+                                                </span>
+                                                <p class="host-name-sq">
+                                                    {{ad.user.nom}}  {{ad.user.prenom}}
+                                                </p>
+                                                
+                                            </a>
+                                        </div>
+                                        
+                                        <h1 class="title-sq">{{ad.marque}}</h1>
+                                        
+                                        <div class="icons-row">
+                                           <div class="icons-column">
+                                                <div class="rating-sq">
+                                                    <i class="icon icon-building-9"></i>
+                                                    {{ad.phone}}
+                                                </div>
+                                            </div>
+                                            <div class="icons-column">
+										   <i class="icon icon-location-pin-2"></i> De {{ad.ville}} vers {{ad.destination}}
+										   </div>
+										  
+										   <div class="icons-column">
+											    {% if ad.nbp == ad.nbr %}
+										   <i class="icon icon-user-circle"></i>{{ad.nbp}}/{{ad.nbr}} Compler
+                                           {% else %}
+                                            <i class="icon icon-user-circle"></i>{{ad.nbp}}/{% if ad.nbr == null %}0 {% else %}{{ad.nbr}}{% endif %}
+                                         {% endif %}
+										   </div>
+                                        </div>
+                                        
+                                        <p class="description-sq">
+                                         le  {{ad.datecov | date('d/m/Y')}} à {{ad.timecov | date('h:m')}} 
+                                                
+                                        
+                                        </p> 
+                                        
+                                    </div>
+                                    
+                                    <!-- Right -->
+                                    <div class="ui twelve wide mobile six wide computer column">
+                                            {% for label,messages in app.flashes %}
+                                    <div class="container mb-3 text-center">
+                                        <div class="alert alert-{{ label }} rounded mb-3" style="color:green;">
+                                            {% for message in messages %}
+                                                <p>{{ message }}</p>
+                                            {% endfor %}
+                                        </div>
+
+                                    </div>
+                                {% endfor %}
+                                       <div class="property-checkout-container main-infos">
+                                          {{form_start(form)}}
+                                           <div class="div-c">
+                                                <label>Nombre de personne</label>
+                                                {{form_widget(form.nb)}}
+                                            </div>
+                                            
+                                            <div class="div-c">
+                                                <label>Addresse</label>
+                                                {{form_widget(form.ville)}}
+                                            </div>
+                                       
+                                          
+                                           
+                                          
+                                           
+                                       
+                                           
+                                           
+                                           <div class="div-c total-sq">
+                                               <div class="divided-column">
+                                                   <label class="placeholder">Total</label>
+                                                   <span class="value-sq" id="montant">...</span>DT
+                                                   
+                                                   
+                                               </div>
+                                                <p class="badge badge-primary">{{ad.montant}} DT / Personne</p>
+                                           </div>
+                                           
+                                           <button type="submit" class="button-sq fullwidth-sq font-weight-bold-sq">Continuer</button>
+                                            {{form_end(form)}}
+                                       </div>
+                                        
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>    
+                            
+                        </div>
+                    </div>
+  
+            </div>
+	    </div>
+       
+        <br>
+        <br>
+        
+   </div>  
+
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script> 
+<script>
+  $(document).ready(function(){
+   
+
+     $('#reservation_nb').on('change', calculateMontant);
+      $('#reservation_nb').on('focus', calculateMontant);
+      $('#reservation_nb').on('onload', calculateMontant);
+  });
+
+  function calculateMontant (){
+
+   
+        var d =document.getElementById("reservation_nb").value;
+        
+        const montant = d * {{ad.montant}};
+        
+    $('#montant').text(montant);
+      
+                            }
+</script>
+
+
+
+
+{#   <script type="text/javascript">
+
+  $(document).ready(function(){
+     $('#reservation_nb').on('change', calculateMontant);
+  });
+
+  function calculateMontant (){
+
+ var d =document.getElementById("reservation_nb").value;
+    
+        
+     
+        const montant = d * {{ad.montant}};
+        
+        $('#montant').text(montant);
+          document.getElementById("montant").value = montant;
+      
+  }
+</script>   #}  
+
+
+
+
+{% endblock %}

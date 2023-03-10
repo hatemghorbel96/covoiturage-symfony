@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdController!{% endblock %}
+
+{% block body %}
+
+<div class="ui layout">
+  
+ 
+</div>
+    <div class="container">    
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Formulaire d'ajout</strong> Ajouter un covoiturage    </div>
+       {{form_start(form)}}
+            <div class="ui twelve wide tablet three wide computer three wide widescreen three wide large screen column">
+            <div class="row">
+               
+            <div class="col-6">{{form_row(form.ville)}}</div>
+            <div class="col-6">{{form_row(form.destination)}}</div>
+            </div>
+              <div class="row">
+            <div class="col-12">{{form_row(form.montant)}}</div>
+            </div>
+             <div class="row">
+            <div class="col-6">{{form_row(form.phone)}}</div>
+            <div class="col-6">{{form_row(form.marque)}}</div>
+            <div class="col-6">{{form_row(form.nbp)}}</div>
+            <div class="col-6">{{form_row(form.image)}}</div>
+            <div class="col-6">{{form_row(form.datecov)}}</div>
+            <div class="col-6">{{form_row(form.timecov)}}</div>
+               </div>
+                 <div class="row">
+            <button class="btn btn-primary d-block mt-4 mb-4" type="submit">Ajouter</button>
+            </div>  </div></div>
+             {{form_end(form)}}
+</div></div>
+
+
+{% endblock %}

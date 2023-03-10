@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ad{% endblock %}
+
+{% block body %}
+
+
+
+
+
+<br>
+
+ <div class="ui layout">
+        <div class="ui grid container">
+            <div class="row">
+                <div class="ui twelve wide tablet three wide computer three wide widescreen three wide large screen column">
+                   
+                    <div class="sticky-element sticky-desktop sticky-large-desktop under-ths">
+                       
+                        <div class="dashboard-sticky">
+                            <div class="dashboard-sticky-inner">
+
+                                <div class="dashboard-menu has-submenu">
+                                    <a href="#" class="item">
+                                        <i class="icon icon-side-sticky-menu"></i>
+                                    </a>
+                                    <ul class="submenu">
+    <li class=""><a class="item" href="{{path('profile')}}">Mon profile</a></li>
+    <li class="active"><a class="item" href="{{path('myres')}}">Mes reservations</a></li>
+   
+    
+</ul>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+               </div>
+               
+               <div class="ui twelve wide tablet nine wide computer nine wide widescreen nine wide large screen column">
+
+                    <div class="typo-header-sq">
+                        <div class="ui grid">
+                          <div class="row">
+                            <div class="ui twelve wide computer column">
+                               <h2>Mes reservation <sup>{{myres | length}}</sup></h2>
+                            </div>
+
+                           
+                            
+
+                          </div>
+
+                         </div>
+                        </div>
+                        
+                        <div class="ui grid">
+                        
+                            <div class="row">
+
+							{% for m in myres %}
+                                <div class="ui twelve wide tablet six wide computer six wide widescreen six wide large screen column"> 
+									<div class="property-item caption-sq shadow-sq small-sq">
+										<div class="property-item-inner">
+
+										   <div class="price-tag-sq">{{m.nb}} personne(s) / {{m.ad.montant}}DT <span>Total {{m.montant}}DT </span></div>
+										   <a class="add-wishlist" href="property_page.html">
+                                                <i class="icon icon-view-solid"></i>
+                                           </a>
+
+											<a class="image-sq" href="{{path('show_ad',{'id':m.ad.id})}}">
+												<div class="image-wrapper">
+													<span class="image-inner">
+														<img src="/uploads/{{m.ad.image}}" alt="" class="">
+													</span>
+												</div>
+											</a>
+
+											<div class="main-details">
+											   <p class="progress-status mt-3">Terminer test</p>
+											   <div class="title-row">
+												   <a href="property_page.html" class="title-sq">{{m.ad.marque}}</a>
+												    {{m.ad.datecov | date ('m/d/Y')}}
+                                        			{{m.ad.timecov | date ('h:m')}}
+											   </div>
+
+											   <div class="icons-row">
+												   <div class="icons-column">
+													   <i class="icon icon-location-pin-2"></i> De {{m.ad.ville}} vers {{m.ad.destination}}
+												   </div>
+												   
+											   </div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+                            {% endfor %}    
+                                
+                               
+
+                            </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

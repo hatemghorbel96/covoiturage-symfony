@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ad{% endblock %}
+
+{% block body %}
+
+
+
+
+
+<br>
+<div class="ui layout">
+        <!-- grid -->
+        <div class="ui grid container stackable centered">
+            <div class="row">
+        
+                <div class="ui twelve wide tablet twelve wide computer ten wide widescreen ten wide large screen column property-section-boxed">
+                  
+                    <br>
+                   
+                    <div class="white-section shadow-sq">
+                        <div class="inner-section">
+                        
+                            <div class="ui grid">
+                                <div class="row">
+                                   
+                                    <!-- Left-->
+                                    <div class="ui twelve wide mobile six wide computer column">
+                                       
+                                        <!-- Slick aici-->
+                                        
+                                        <div class="property-image-wrapper">
+                                            <div class="sq-slick carousel-sq" data-center-mode="true" data-center-padding="0" data-show-slides="1" data-scroll-slides="1" data-mobile-center-padding="0" data-tablet-arrows="false" data-mobile-arrows="false" data-fade="true" data-ease="linear" data-speed="500" data-tablet-fade="false" data-tablet-ease="ease" data-tablet-speed="300" data-mobile-fade="false" data-mobile-ease="ease" data-mobile-speed="300">
+                                               
+                                                <!-- Slide 01-->
+                                                <div>
+                                                    <div class="caption-content"></div>
+                                                    <div class="image-wrapper">
+                                                        <div class="image-inner">
+                                                            <img class="image-sq slick-img" src="/uploads/{{ad.image}}" alt="" data-gallery="gallery" data-caption="Car 01">
+                                                        </div>
+                                                    </div>
+                                            
+                                                </div>
+                                            
+                                             
+                                            
+                                            </div>
+                                            
+                                            <a class="host-sq" href="{{path('show_user',{'id':ad.user.id})}}">
+                                                <span class="avatar-sq">
+                                                    <img src="assets/images/avatar/avatar_04.jpg" alt="">
+                                                </span>
+                                                <p class="host-name-sq">
+                                                    {{ad.user.nom}}  {{ad.user.prenom}}
+                                                </p>
+                                                
+                                            </a>
+                                        </div>
+                                        
+                                        <h1 class="title-sq">{{ad.marque}}</h1>
+                                        
+                                        <div class="icons-row">
+                                           <div class="icons-column">
+                                                <div class="rating-sq">
+                                                    <i class="icon icon-building-9"></i>
+                                                    {{ad.phone}}
+                                                </div>
+                                            </div>
+                                            <div class="icons-column">
+										   <i class="icon icon-location-pin-2"></i> De {{ad.ville}} vers {{ad.destination}}
+										   </div>
+										  
+										   <div class="icons-column">
+											    {% if ad.nbp == ad.nbr %}
+										   <i class="icon icon-user-circle"></i>{{ad.nbp}}/{{ad.nbr}} Compler
+                                           {% else %}
+                                            <i class="icon icon-user-circle"></i>{{ad.nbp}}/{% if ad.nbr == null %}0 {% else %}{{ad.nbr}}{% endif %}
+                                         {% endif %}
+										   </div>
+                                        </div>
+                                        
+                                        <p class="description-sq">
+                                         le  {{ad.datecov | date('d/m/Y')}} à {{ad.timecov | date('h:m')}} 
+                                                
+                                          
+                                        </p>
+                                             {% for u in ad.reservations %} 
+                                                
+                                                {% if app.user.id == u.user.id %} <div class="class alert alert-info">Vous avez deja reservé 
+                                                 {% for u in ad.reservations %}
+                                                {{u.nb}} places
+                                                {% endfor %} </div>
+                                                {% else %}
+                                            <a class="button-sq small-sq" href="{{path('add_reservation',{'id':ad.id})}}">Reserver</a>
+                                            {% endif %}
+                                            
+                                            {% endfor %}
+                                          
+                                           
+                                        
+                                    </div>
+                                    
+                                    <!-- Right -->
+                                    <div class="ui twelve wide mobile six wide computer column">
+                                           
+                                       <div class="property-checkout-container main-infos">
+                                       {% if ad.reservations | length != 0 %}
+                                          {% for u in ad.reservations %}
+                                      <p class="card-text">{{u.user.nom}} {{u.user.prenom}} <i class="icon-complete primary" style="color:green;"></i>
+                                      {{u.nb}} place(s) <small>de {{u.ville}}</small> 
+                                      <a class="button-sq small-sq" href="{{path('delete_reservation',{'id':u.id})}}">Annuler</a>
+                                    
+                                      </p>
+                                      {% endfor %}
+                                       {% else %}
+                                         <p class="card-text">
+                                       <div class="alert alert-info alert-dismissible fade show">aucune reservation   <a  href="{{path('add_reservation',{'id':ad.id})}}">Reserver ici</a></div>
+                                       </p>
+                                       {% endif %}
+                                         
+                                           
+                                          
+                                           
+                                       
+                                           
+                                           
+                                          
+                                       </div>
+                                        
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>    
+                            
+                        </div>
+                    </div>
+  
+            </div>
+	    </div>
+       
+        <br>
+        <br>
+        
+   </div>  
+
+
+{% endblock %}

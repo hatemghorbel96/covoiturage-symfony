@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdController!{% endblock %}
+
+{% block body %}
+
+
+
+<div class="row">
+{% for a in ads |sort((b, a) => a.id <=> b.id) %}
+<div class="col-4 mt-3 mb-3">
+<div class="card" style="width: 18rem;">
+  <img src="https://prmeng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2020/05/23/node_87564/37530102/public/2020/05/23/B9723538602Z.1_20200523233453_000%2BG76G282G7.2-0.jpg?itok=Oq6CIa971590269712" class="card-img-top" alt="...">
+  <div class="card-body">
+   
+    <p class="card-text">{{a.ville}}</p>
+    {% if a.nbp == a.nbr %}
+      <p class="card-text">{{a.nbp}}/{{a.nbr}} Compler</p>
+    {% else %}
+    <p class="card-text">{{a.nbp}}/{% if a.nbr == null %}0 {% else %}{{a.nbr}}{% endif %}</p>
+    {% endif %}
+     {% if a.nbp == a.nbr %}
+        <button href="{{path('add_reservation',{'id':a.id})}}" type="button" class="btn btn-primary" disabled>reserver</button>
+     {% else %}
+       <a href="{{path('add_reservation',{'id':a.id})}}" class="btn btn-primary">reserver</a>
+     {% endif %}
+        <a href="{{path('show_ad',{'id':a.id})}}" class="btn btn-primary">show</a>
+
+  </div>
+  </div>
+</div>
+ {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bravo!{% endblock %}
+
+{% block body %}
+
+
+      <br>  
+
+         <div class="ui layout">
+        <!-- grid -->
+        <div class="ui grid container stackable centered">
+            <div class="row">
+                <div class="ui twelve wide tablet twelve wide computer ten wide widescreen ten wide large screen column property-section-boxed">
+                  
+                    <br>
+                   
+                   
+                    
+                 
+                    
+                   {% if app.request.query.get('withAlert') %}
+            <div class="alert alert-success">
+                <h4 class="alert-heading">
+                    Merci 
+                </h4>
+
+                <p>
+                Votre réservation  
+               a bien été prise en compte
+                </p>
+            </div>
+         {% endif %}
+                    
+                  
+
+				 {% set comment = reservation.ad.getCommentFromUser(app.user) %}
+                    {% if comment is not null %}
+                   
+                    <div class="reviews-feed">
+                        <div class="reviews-row">
+							<div class="review-meta">
+								<a class="avatar-sq verified-sq" href="vendor_details.html">
+									<img src="assets/images/avatar/avatar_01.jpg" alt="">
+								</a>
+								<a class="name-sq" href="vendor_details.html"> {{comment.user.email}}</a>
+							</div>
+
+							<div class="comment-sq">
+							   <span class="date-sq">{{comment.createdAt | date('d/m/Y')}}</span>
+
+								<p> {{comment.content}}</p>
+							</div>
+						</div>
+
+					{% else %}
+                       
+                        <div class="reviews-row">
+                            
+                            <div class="review-meta">
+                                <div class="avatar-sq verified-sq my-avatar-sq">
+                                    <img src="assets/images/avatar/my_avatar.jpg" alt="">
+                                </div>
+                                <p class="name-sq">Me</p>
+                            </div>
+                            {{form_start(form)}}
+                            <div class="comment-sq">
+                            {{form_widget(form.content)}}                               <br>
+                               <br>
+                               <button type="submit" class="button-sq font-weight-extrabold-sq small-sq float-right-sq" href="#">Ajouter</a>
+                           {{form_end(form)}}
+                            </div>
+                        </div>
+                        
+                         {% endif %}
+                        
+
+                        </div>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+	   
+       
+       
+        
+   </div>    
+       
+{% endblock %}

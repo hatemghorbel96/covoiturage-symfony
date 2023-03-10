@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="ui layout">
+  
+ 
+</div>
+    <div class="container"> 
+       <h3 class="text-align-center-sq block-sq title-sq mb-5">Cree un compte</h3>      
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>vous avez deja un compte cliqué</strong>  <a href="{{path('app_login')}}">ici</a>    </div>
+      
+       {{ form_start(registrationForm) }}
+            <div class="ui twelve wide tablet three wide computer three wide widescreen three wide large screen column">
+            <div class="row">
+               
+            <div class="col-6"> {{ form_row(registrationForm.email) }}  </div>
+            <div class="col-6">  {{ form_row(registrationForm.plainPassword) }} </div>
+            </div>
+              <div class="row">
+            <div class="col-6"> {{ form_row(registrationForm.nom) }}   </div>
+                   <div class="col-6"> {{ form_row(registrationForm.prenom) }}   </div>
+            </div>
+             <div class="row">
+            <div class="col-12">   {{ form_row(registrationForm.ville) }}  </div>
+            <div class="col-6">     {{ form_row(registrationForm.fb) }}  </div>
+            <div class="col-6">     {{ form_row(registrationForm.insta) }}  </div>
+            <div class="col-12"> {{ form_row(registrationForm.image) }}  </div>
+            <div class="row">
+            <div class="col-12 mt-3">  {{ form_row(registrationForm.agreeTerms) }}   </div>
+            </div>
+               </div>
+                 <div class="row">
+            <button class="btn btn-primary d-block mt-4 mb-4" type="submit">register</button>
+            </div>  </div></div>
+             {{form_end(registrationForm)}}
+</div></div>
+
+
+{% endblock %}
